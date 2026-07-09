@@ -24,6 +24,24 @@ function createServer() {
       return;
     }
 
+    if (url.pathname === '/') {
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(`<!doctype html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>ci-test-app</title></head>
+<body style="font-family: system-ui, sans-serif; background:#0b0f14; color:#e6edf3; padding:2rem;">
+  <h1>✅ ci-test-app est en ligne</h1>
+  <p>Version de build : ${new Date().toISOString()}</p>
+  <p>Endpoints disponibles :</p>
+  <ul>
+    <li><a style="color:#58a6ff" href="/health">/health</a></li>
+    <li><a style="color:#58a6ff" href="/add?a=2&b=3">/add?a=2&b=3</a></li>
+  </ul>
+</body>
+</html>`);
+      return;
+    }
+
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ error: 'Route inconnue' }));
   });

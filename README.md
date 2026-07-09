@@ -76,7 +76,30 @@ Ensuite, pousse un commit sur `main` (par exemple modifie `README.md`) : au
 prochain contrôle, le pipeline se déclenche tout seul, sans webhook ni IP
 publique.
 
-### 3. Simuler un échec de pipeline
+### 3. Déploiement persistant (zero-downtime)
+
+`ci-test-app` est prêt pour le mode "déploiement persistant" du projet
+principal : il lit déjà `PORT` depuis l'environnement et expose `/health`.
+
+Dans le formulaire (manuel ou watch), coche "Déploiement persistant" avec :
+
+| Champ | Valeur |
+|---|---|
+| Commande de démarrage | `npm start` |
+| Route de vérification de santé | `/health` |
+
+Lance un premier pipeline réussi → une URL "Application en ligne" apparaît
+(ex: `http://localhost:41234`), clique dessus pour voir la page d'accueil.
+
+Ensuite, pour observer la bascule intelligente :
+1. Pousse un commit qui **casse un test** (voir section 4 ci-dessous) → le
+   nouveau pipeline échoue à l'étape `test`, l'étape `serve` est ignorée, et
+   **l'ancienne URL continue de répondre normalement**.
+2. Corrige le test et pousse à nouveau → le nouveau pipeline réussit,
+   **l'ancien serveur est arrêté**, et une **nouvelle URL** (nouveau port)
+   apparaît comme "Application en ligne".
+
+### 4. Simuler un échec de pipeline
 
 Pour tester le comportement en cas d'échec (étape rouge + étapes suivantes
 ignorées), casse volontairement un test avant de pousser, par exemple dans
