@@ -30,7 +30,7 @@ function createServer() {
 <html lang="fr">
 <head><meta charset="utf-8"><title>ci-test-app</title></head>
 <body style="font-family: system-ui, sans-serif; background:#0b0f14; color:#e6edf3; padding:2rem;">
-  <h1>✅ ci-test-app est en ligne</h1>
+  <h1>✅ ci-test-app est en ligne test</h1>
   <p>Version de build : ${new Date().toISOString()}</p>
   <p>Endpoints disponibles :</p>
   <ul>
