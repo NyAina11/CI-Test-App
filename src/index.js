@@ -1,5 +1,5 @@
 const http = require('http');
-const { add, isEven, factorial } = require('./math');
+const { add, subtract, isEven, factorial } = require('./math');
 
 /**
  * Application minimaliste en HTTP natif (aucune dépendance externe),
@@ -21,6 +21,14 @@ function createServer() {
       const b = Number(url.searchParams.get('b'));
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ result: add(a, b) }));
+      return;
+    }
+
+    if (url.pathname === '/subtract') {
+      const a = Number(url.searchParams.get('a'));
+      const b = Number(url.searchParams.get('b'));
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ result: subtract(a, b) }));
       return;
     }
 
