@@ -44,6 +44,7 @@ function createServer() {
   <ul>
     <li><a style="color:#58a6ff" href="/health">/health</a></li>
     <li><a style="color:#58a6ff" href="/add?a=2&b=3">/add?a=2&b=3</a></li>
+    <li><a style="color:#58a6ff" href="/subtract?a=2&b=3">/subtract?a=2&b=3</a></li>
   </ul>
 </body>
 </html>`);
