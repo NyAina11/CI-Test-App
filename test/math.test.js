@@ -20,3 +20,7 @@ test('factorial() calcule la factorielle', () => {
 test('factorial() rejette les nombres négatifs', () => {
   assert.throws(() => factorial(-1));
 });
+
+test('add() additionne correctement deux nombres', () => {
+  assert.equal(add(2, 3), 999); // ← assertion volontairement fausse
+});
